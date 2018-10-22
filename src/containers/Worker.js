@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LoginForm from '../components/LoginForm'
+import WorkerHomePage from '../components/WorkerHomePage'
 
 export default class Worker extends Component {
 
@@ -7,22 +8,24 @@ export default class Worker extends Component {
     super()
     this.state = {
       loggedIn: false,
-      name: null,
-      dept: null
+      workerObj: {}
     }
   }
 
-  handleEmployerLoginSubmit = () => {
-    console.log("change this to make request to backend")
-    this.setState({
-      loggedIn: true
+  handleWorkerLoginSubmit = (empLogin) => {
+    this.props.adapter.loginWorker(empLogin)
+    .then((workerObj) => {
+      this.setState({
+        loggedIn: true,
+        workerObj
+      })
     })
   }
 
   render() {
     return (
       <React.Fragment>
-        {this.state.loggedIn ? "you are logged in" : <LoginForm handleLoginSubmit={this.handleEmployerLoginSubmit} />}
+        {this.state.loggedIn ? <WorkerHomePage workerObj={this.state.workerObj} adapter={this.props.adapter}/> : <LoginForm handleLoginSubmit={this.handleWorkerLoginSubmit} />}
       </React.Fragment>
     )
   }
