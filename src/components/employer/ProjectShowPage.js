@@ -19,13 +19,13 @@ class ProjectShowPage extends Component {
   }
 
   render() {
-
-    const tasksList = this.state.tasks.map((task) => (<ul key={task.id}><li>{task.title}</li><ul><li>{task.desc}</li></ul></ul>))
+    console.log(this.state.tasks)
+    // const tasksList = this.state.tasks.map((task) => (<ul key={task.id}><li>{task.title}</li><ul><li>{task.desc}</li></ul></ul>))
     return (
       <React.Fragment>
         <h1>{this.state.title}</h1>
         <p>{this.state.desc}</p>
-        {tasksList}
+    
         <Link to='/employer'><button> click to go back </button></Link>
       </React.Fragment>
     )

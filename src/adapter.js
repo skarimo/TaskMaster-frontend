@@ -27,8 +27,15 @@ export default class Adapter {
   }
 
   loginEmployer(empLogin) {
-    console.log("change this to login employer", empLogin)
-    return fetch("http://localhost:3001/employers/1").then(res=>res.json())
+    return fetch((this.baseURL + `/employers/login`), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(empLogin)
+    })
+    .then(response => response.json())
   }
 
   fetchProjects(id) {
@@ -56,6 +63,7 @@ export default class Adapter {
   }
 
   createEmployer(empObj) {
+    console.log(empObj)
     return fetch((this.baseURL + '/employers/new'), {
       method: "POST",
       headers: {

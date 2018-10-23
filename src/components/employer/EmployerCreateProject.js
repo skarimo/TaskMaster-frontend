@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom';
-
+import { Form } from 'semantic-ui-react'
 
 
 class EmployerCreateProject extends Component {
@@ -58,21 +58,25 @@ class EmployerCreateProject extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Field>
           <label>Title</label>
-            <input onChange={this.handleOnChange} type="text" name="title" />
-
+            <input onChange={this.handleOnChange} placeholder="Project Title" type="text" name="title" />
+        </Form.Field>
+        <Form.Field>
           <label>Description</label>
-            <input onChange={this.handleOnChange} type="text" name="desc" />
+            <input onChange={this.handleOnChange} placeholder="Project Description" type="text" name="desc" />
             {this.showTasks()}
-
+      </Form.Field>
+        <Form.Field>
           <label>Tasks</label>
-            <input onChange={this.handleOnChange} type="text" name="taskTitle" value={this.state.taskTitle} />
-            <input onChange={this.handleOnChange} type="text" name="taskDesc" value={this.state.taskDesc} />
-            <button onClick={this.handleAddTask} type='submit'>Add Task</button> <br/>
+            <input onChange={this.handleOnChange} placeholder="Task Title" type="text" name="taskTitle" value={this.state.taskTitle} />
+            <input onChange={this.handleOnChange} placeholder="Task Description" type="text" name="taskDesc" value={this.state.taskDesc} />
+        </Form.Field>
+            <button onClick={this.handleAddTask} type='submit' class='ui secondary button' role='button'>Add Task</button> <br/>
 
-          <button type='submit'>Submit</button>
-      </form>
+          <button type='submit'style={{marginTop: "5%"}} class='ui primary button' role='button'>Submit</button>
+      </Form>
     )
   }
 }

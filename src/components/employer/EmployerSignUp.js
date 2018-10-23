@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 
 export default class EmployerSignUp extends Component {
@@ -15,7 +16,9 @@ export default class EmployerSignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.handleSignUp(this.state)
+    console.log(this.props.history)
+    this.props.handleSignUp(e, this.state)
+    this.props.history.push('/employer')
   }
 
   handleOnChange = (e) => {
