@@ -99,19 +99,24 @@ export default class Employer extends Component {
     if (this.state.employerObj !== null) {
       return(
         <div>
-          <h1> Welcome {this.state.employerObj.name}</h1>
-
+          <h4> Welcome {this.state.employerObj.name}</h4>
           <div style={{width: "100%"}}>
-            <h2>this is projects</h2>
-            <Link to='/employer/project/new'><button>Create a New Project</button></Link>
-            <div id="projects">
+            <div class='ui inverted segment'>
+              <div class='ui inverted divider' />
+              <div class='ui horizontal inverted divider'>Projects</div>
+            </div>
+            <Link to='/employer/project/new'><button class='ui blue button' role='button' style={{marginBottom: "1%"}}>Create a New Project</button></Link>
+            <div role='list' class='ui divided middle aligned list'>
             {this.projectCards()}
             </div>
           </div>
 
           <div style={{width: "100%"}}>
-              <h2>this is workers</h2>
-              <Link to='/employer/worker/new'><button>Create a New Worker Account</button></Link>
+            <div class='ui inverted segment'>
+              <div class='ui inverted divider' />
+              <div class='ui horizontal inverted divider'>Workers/Employees</div>
+            </div>
+              <Link to='/employer/worker/new'><button class='ui blue button' role='button' style={{marginBottom: "1%"}}>Create a New Worker Account</button></Link>
                 </div>
               <div class='ui three cards'>
               {this.workerCards()}
