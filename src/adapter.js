@@ -35,6 +35,10 @@ export default class Adapter {
     return fetch(this.baseURL + `/employers/${id}/projects`).then(res=>res.json())
   }
 
+  fetchProjectTasks(id, projectId) {
+    return fetch(this.baseURL + `/employers/${id}/projects/${projectId}/tasks`).then(res=>res.json())
+  }
+
   fetchWorkers(id) {
     return fetch(this.baseURL + `/employers/${id}/workers`).then(res=>res.json())
   }
@@ -85,6 +89,18 @@ export default class Adapter {
     .then(response => response.json())
   }
 
-// delete '/employers/:id/workers/:worker_id'
+  assignProjectToWorker(workerId, projectId) {
+    return fetch((this.baseURL + `/workers/${workerId}/update`), {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({worker: {project_id: projectId}})
+    })
+    .then(response => response.json())
+  }
+
+
 
 }

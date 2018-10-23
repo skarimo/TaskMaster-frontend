@@ -10,7 +10,14 @@ h1 {
   padding: 10px;
 }
 
-input[type=button], input[type=submit], input[type=reset], button {
+/* #workers {
+  width: 100%;
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+} */
+
+/* input[type=button], input[type=submit], input[type=reset], button {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -18,4 +25,4 @@ input[type=button], input[type=submit], input[type=reset], button {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
-}
+} */

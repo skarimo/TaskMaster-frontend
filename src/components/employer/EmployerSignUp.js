@@ -29,18 +29,28 @@ export default class EmployerSignUp extends Component {
     return (
       <div>
         <h1>Create An Account</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} class="ui form">
+          <div class="field">
             <label>Name</label>
               <input onChange={this.handleOnChange} type="text" name="name" />
+          </div>
+          <div class="field">
             <label>Department</label>
               <input onChange={this.handleOnChange} type="text" name="dept" />
+          </div>
+          <div class="field">
             <label>E-mail</label>
               <input onChange={this.handleOnChange} type="text" name="email" />
+          </div>
+          <div class="field">
             <label>Username</label>
               <input onChange={this.handleOnChange} type="text" name="username" />
-          <label>Password</label>
-            <input onChange={this.handleOnChange} type="password" name="password" />
-            <button type='submit'>Submit</button>
+          </div>
+          <div class="field">
+            <label>Password</label>
+              <input onChange={this.handleOnChange} type="password" name="password" />
+          </div>
+            <button class="ui button" type="submit">Submit</button>
         </form>
       </div>
     )

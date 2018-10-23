@@ -19,16 +19,20 @@ class LoginForm extends Component {
   }
 
   render() {
-    
+
     return (
       <div>
       <h1>Log-in</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} class="ui form">
+        <div class="field">
           <label>Username</label>
             <input onChange={this.handleOnChange} type="text" name="username" />
+        </div>
+        <div class="field">
           <label>Password</label>
             <input onChange={this.handleOnChange} type="text" name="password"/>
-          <input type="submit" value="Log-In"/>
+        </div>
+          <button class="ui button" type="submit">Submit</button>
         </form>
       </div>
     )

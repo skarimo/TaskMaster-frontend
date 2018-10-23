@@ -29,6 +29,7 @@ export default class Employer extends Component {
   componentDidMount() {
     let projects = null
     let workers = null
+    let tasks = []
 
     this.props.adapter.fetchProjects(this.state.employerObj.id)
     .then((projectsRes) => {
@@ -100,23 +101,32 @@ export default class Employer extends Component {
         <div>
           <h1> Welcome {this.state.employerObj.name}</h1>
 
-          <div id="projects">
+          <div style={{width: "100%"}}>
             <h2>this is projects</h2>
             <Link to='/employer/project/new'><button>Create a New Project</button></Link>
+            <div id="projects">
             {this.projectCards()}
+            </div>
           </div>
 
-          <div id="workers">
-            <h2>this is workers</h2>
-            <Link to='/employer/worker/new'><button>Create a New Worker Account</button></Link>
-            {this.workerCards()}
-          </div>
+          <div style={{width: "100%"}}>
+              <h2>this is workers</h2>
+              <Link to='/employer/worker/new'><button>Create a New Worker Account</button></Link>
+                </div>
+              <div class='ui three cards'>
+              {this.workerCards()}
+              </div>
         </div>
       )
 
     } else {
       return <Redirect to='/' />
     }
+  }
+
+  handleAssignProjectToWorker = (workerId, projectId, worker) => {
+    this.props.adapter.assignProjectToWorker(workerId, projectId)
+    worker.project_id = projectId
   }
 
 
@@ -126,10 +136,15 @@ export default class Employer extends Component {
         <Switch>
           <React.Fragment>
             <Route exact path='/employer' component={this.mainEmployerShowPage}/>
-            <Route exact path='/employer/projects/:id' component={ProjectShowPage}/>
-            <Route exact path='/employer/workers/:id' component={WorkerShowPage}/>
+
+            <Route exact path='/employer/projects/:id' render={(props) => <ProjectShowPage employerId={this.state.employerObj.id} adapter={this.props.adapter} project={props.location.project} />} />
+
+            <Route exact path='/employer/workers/:id' render={(props) => <WorkerShowPage worker={props.location.worker} projects={this.state.projects} handleAssignProjectToWorker={this.handleAssignProjectToWorker} />} />
+
             <Route exact path='/employer/project/new' render={(props) => <EmployerCreateProject handleCreateProject={this.handleCreateProject} history={props.history} />}/>
+
             <Route exact path='/employer/worker/new' render={(props) => <EmployerNewWorker handleNewWorker={this.handleNewWorker} history={props.history} />}/>
+
           </React.Fragment>
         </Switch>
       </BrowserRouter>

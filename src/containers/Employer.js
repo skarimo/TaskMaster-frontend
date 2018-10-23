@@ -46,7 +46,7 @@ export default class Employer extends Component {
       if (this.state.loggedIn) {
         return (<EmployerHomePage history={this.props.history} adapter={this.props.adapter} employerObj={this.state.employerObj}/>)
       } else {
-        return (<React.Fragment> <LoginForm handleLoginSubmit={this.handleEmployerLoginSubmit} adapter={this.props.adapter} /> <Link to='/employer/signup'><button> Sign Up </button> </Link> </React.Fragment>)
+        return (<React.Fragment><Link to='/employer/signup'><button class="ui button" type="">Sign-up</button></Link>  <LoginForm handleLoginSubmit={this.handleEmployerLoginSubmit} adapter={this.props.adapter} /></React.Fragment>)
       }
     }
 
