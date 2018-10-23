@@ -23,7 +23,7 @@ export default class Adapter {
 
   loginWorker(workerLogin) {
     console.log("change this to login employer", workerLogin)
-    return fetch("http://localhost:3001/workers/1").then(res=>res.json())
+    return fetch("http://localhost:3001/workers/2").then(res=>res.json())
   }
 
   loginEmployer(empLogin) {
@@ -101,6 +101,30 @@ export default class Adapter {
     .then(response => response.json())
   }
 
+  fetchWorkerInfo(workerId){
+    return fetch(this.baseURL+'/workers/'+workerId+'/info')
+      .then(res => res.json())
+  }
+
+  patchTaskInfo(workerId, taskId, editBody){
+    console.log(editBody)
+    return fetch((`${this.baseURL}/workers/${workerId}/tasks/${taskId}`), {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(editBody)
+    })
+    .then(res => res.json())
+  }
+
 
 
 }
+
+// get '/workers/:id/tasks' => 'workers#show_tasks'
+// get 'workers/:id/employer' => 'workers#my_boss'
+// get '/workers/:id/project' => 'workers#my_project'
+// patch '/workers/:id/task/:task_id' => 'workers#edit_task'
+// patch '/workers/:id/update' => 'workers#update_info'

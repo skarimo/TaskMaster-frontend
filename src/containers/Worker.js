@@ -25,7 +25,9 @@ export default class Worker extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.loggedIn ? <WorkerHomePage workerObj={this.state.workerObj} adapter={this.props.adapter}/> : <LoginForm handleLoginSubmit={this.handleWorkerLoginSubmit} />}
+        {this.state.loggedIn 
+          ? <WorkerHomePage workerObj={this.state.workerObj} adapter={this.props.adapter}/> 
+          : <LoginForm handleLoginSubmit={this.handleWorkerLoginSubmit} />}
       </React.Fragment>
     )
   }
