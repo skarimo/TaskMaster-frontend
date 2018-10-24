@@ -43,6 +43,10 @@ export default class Employer extends Component {
     })
   }
 
+  handleDeleteTaskEmployer = (taskId) => {
+    this.props.adapter.deleteTaskEmployer(taskId).then(console.log)
+  }
+
   handleDeleteProject = (projectId) => {
     this.props.adapter.deleteProject(this.state.employerObj.id, projectId).then(() => {
       const newProjects = this.state.projects.filter(project => project.id !== projectId)
@@ -59,7 +63,7 @@ export default class Employer extends Component {
 
   projectCards() {
     if (this.state.projects) {
-      return this.state.projects.map(project => <ProjectCard handleDeleteProject={this.handleDeleteProject} handleDeleteProject={this.handleDeleteProject} key={project.id} employerId={this.state.employerObj.id} adapter={this.props.adapter} project={project}/> )
+      return this.state.projects.map(project => <ProjectCard handleDeleteTaskEmployer={this.handleDeleteTaskEmployer} handleDeleteProject={this.handleDeleteProject} handleDeleteProject={this.handleDeleteProject} key={project.id} employerId={this.state.employerObj.id} adapter={this.props.adapter} project={project}/> )
     } else {
       return "You have no projects"
     }

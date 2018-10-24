@@ -104,7 +104,7 @@ export default class Adapter {
         "Content-Type": "application/json",
         'Accept': 'application/json'
       },
-      body: JSON.stringify({worker: {project_id: projectId}})
+      body: JSON.stringify({worker: {assignment_id: projectId}})
     })
     .then(response => response.json())
   }
@@ -136,6 +136,14 @@ export default class Adapter {
       }
     }).then(res => res.json())
   }
-}
 
-// delete '/workers/:id/tasks/:task_id' => 'workers#remove_task'
+  deleteTaskEmployer(taskId){
+    return fetch((`${this.baseURL}/task/${taskId}`),{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    }).then(res => res.json())
+  }
+}

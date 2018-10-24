@@ -17,9 +17,18 @@ class ProjectCard extends Component {
     console.log(this.tasksList())
   }
 
+  handleDeleteTaskEmployer = (taskId) => {
+    this.props.handleDeleteTaskEmployer(taskId)
+    let newTasks = this.state.tasks.filter((task) => task.id !== taskId)
+    this.setState({ tasks: newTasks })
+  }
+
   tasksList = ()=> {
-    const tasksList = this.state.tasks.map((task) => (<ul key={task.id}><li>{task.title}</li><ul><li>{task.desc} <b> STATUS: </b> {task.status}</li></ul></ul>))
-    return tasksList
+    if (this.state.tasks.length >= 1) {
+      return this.state.tasks.map((task) => (<ul key={task.id}><li><b style={{fontSize:"20px"}}>{task.title}</b> <button className="ui inverted green button" onClick={() => {this.handleDeleteTaskEmployer(task.id)}}>Task Completed</button></li><ul><li>{task.desc} <b> STATUS: </b> {task.status}</li></ul></ul>))
+    } else {
+      return ("you have no tasks for this project")
+    }
   }
 
   render() {
@@ -29,10 +38,10 @@ class ProjectCard extends Component {
           <button onClick={this.handleShowOrHideProject} class='ui button' role='button'>
             Click to Show
           </button>
-          <button onClick={() => {this.props.handleDeleteProject(this.props.project.id)}}>Delete</button>
+          <button class="ui inverted red button" onClick={() => {this.props.handleDeleteProject(this.props.project.id)}}>Delete</button>
         </div>
         <i aria-hidden='true' class='industry icon' />
-        <div class='content'>{this.props.project.title} : {this.props.project.desc}</div>
+        <div class='content'><b style={{fontSize:"25px"}}>{this.props.project.title}</b> : {this.props.project.desc}</div>
         {this.state.show ? this.tasksList() : null}
       </div>
     )

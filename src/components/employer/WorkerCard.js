@@ -17,8 +17,8 @@ const WorkerCard = (props) => {
           <a class="header"><Link to={{pathname: `/employer/workers/${props.worker.id}`, worker: props.worker }}>{props.worker.name}</Link>
           </a>
             Assign Project:
-            
-            <select class="custom-select" style={{width:'60%'}} defaultValue={worker.project_id} name="projectId" onChange={(e) => props.handleAssignProjectToWorker(worker.id, e.target.value, worker)}>
+
+            <select class="custom-select" style={{width:'60%'}} defaultValue={worker.assignment_id} name="projectId" onChange={(e) => props.handleAssignProjectToWorker(worker.id, e.target.value, worker)}>
               <option key={null} value={null}>None</option>
               {optionsList}
             </select>

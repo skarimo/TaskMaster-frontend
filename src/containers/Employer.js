@@ -19,10 +19,15 @@ export default class Employer extends Component {
     handleEmployerLoginSubmit = (empLogin) => {
       this.props.adapter.loginEmployer(empLogin)
       .then((employerObj) => {
-        this.setState({
-          loggedIn: true,
-          employerObj
-        })
+        if (employerObj.error == null) {
+          console.log("this is working", this.state)
+          this.setState({
+            loggedIn: true,
+            employerObj
+          })
+        } else {
+          console.log("error")
+        }
       })
     }
 
