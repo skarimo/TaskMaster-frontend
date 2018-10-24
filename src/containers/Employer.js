@@ -27,13 +27,14 @@ export default class Employer extends Component {
     }
 
 
-    handleSignUp = (state) => {
+    handleSignUp = (e, state) => {
       this.props.adapter.createEmployer(state)
       .then((employerObj) => {
         if (employerObj.error == null) {
+          console.log("this is working", this.state)
           this.setState({
-            employerObj,
-            loggedIn: true
+            loggedIn: true,
+            employerObj
           })
         } else {
           console.log("error")
@@ -55,7 +56,7 @@ export default class Employer extends Component {
         <BrowserRouter>
           <Switch>
             <React.Fragment>
-              <Route exact path='/employer/signup' render={() => <EmployerSignUp handleSignUp={this.handleSignUp} adapter={this.props.adapter} />  }/>
+              <Route exact path='/employer/signup' render={(props) => <EmployerSignUp history={props.history} handleSignUp={this.handleSignUp} adapter={this.props.adapter} />  }/>
               <Route exact path='/employer' render={() => this.loggedIn()}/>
             </React.Fragment>
           </Switch>

@@ -59,7 +59,7 @@ export default class Employer extends Component {
 
   projectCards() {
     if (this.state.projects) {
-      return this.state.projects.map(project => <ProjectCard handleDeleteProject={this.handleDeleteProject} key={project.id} project={project}/> )
+      return this.state.projects.map(project => <ProjectCard handleDeleteProject={this.handleDeleteProject} handleDeleteProject={this.handleDeleteProject} key={project.id} employerId={this.state.employerObj.id} adapter={this.props.adapter} project={project}/> )
     } else {
       return "You have no projects"
     }
@@ -67,7 +67,7 @@ export default class Employer extends Component {
 
   workerCards() {
     if (this.state.workers) {
-      return this.state.workers.map(worker => <WorkerCard handleDeleteWorker={this.handleDeleteWorker} key={worker.id} worker={worker} />)
+      return this.state.workers.map(worker => <WorkerCard handleAssignProjectToWorker={this.handleAssignProjectToWorker} projects={this.state.projects} handleDeleteWorker={this.handleDeleteWorker} key={worker.id} worker={worker} />)
     } else {
       return "You have no workers"
     }
@@ -99,14 +99,14 @@ export default class Employer extends Component {
     if (this.state.employerObj !== null) {
       return(
         <div>
-          <h4> Welcome {this.state.employerObj.name}</h4>
+          <h4> Welcome {this.state.employerObj.name}!</h4>
           <div style={{width: "100%"}}>
             <div class='ui inverted segment'>
               <div class='ui inverted divider' />
               <div class='ui horizontal inverted divider'>Projects</div>
             </div>
             <Link to='/employer/project/new'><button class='ui blue button' role='button' style={{marginBottom: "1%"}}>Create a New Project</button></Link>
-            <div role='list' class='ui divided middle aligned list'>
+            <div role='list' class='ui divided middle aligned list' style={{marginBottom: '2%'}}>
             {this.projectCards()}
             </div>
           </div>

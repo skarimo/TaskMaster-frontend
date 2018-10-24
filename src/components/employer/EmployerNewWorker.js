@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-
+import { Form } from 'semantic-ui-react'
 
 
 class EmployerNewWorker extends Component {
@@ -29,23 +29,25 @@ class EmployerNewWorker extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Field>
           <label>Name</label>
             <input onChange={this.handleOnChange} type="text" name="name" />
-
+        </Form.Field>
+        <Form.Field>
           <label>Username</label>
             <input onChange={this.handleOnChange} type="text" name="username" />
-
-
+        </Form.Field>
+        <Form.Field>
           <label>E-mail</label>
             <input onChange={this.handleOnChange} type="text" name="email" />
-
+        </Form.Field>
+        <Form.Field>
           <label>Password</label>
             <input onChange={this.handleOnChange} type="password" name="password" />
-
-          <button type='submit'>Submit</button>
-      </form>
+        </Form.Field>
+          <button class='ui primary button' role='button' type='submit'>Submit</button>
+      </Form>
     )
   }
 }

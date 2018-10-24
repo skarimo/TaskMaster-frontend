@@ -19,10 +19,14 @@ class App extends Component {
     return (
       <Router>
         <div id="main-container">
-          <h1>LOGO OR WHATEVER WILL GO HERE WE WILL SEE</h1>
-          <Route exact path="/" component={MainContainer} />
-          <Route exact path="/employer" render={() => <Employer adapter={adapter} />} />
-          <Route exact path="/worker" render={() => <Worker adapter={adapter} />} />
+          <div className="app header">
+            <img src="logo.png" style={{float: "left"}}/> Team Projects Made Easy
+          </div>
+          <div id="main-component">
+            <Route exact path="/" component={MainContainer} />
+            <Route exact path="/employer" render={() => <Employer adapter={adapter} />} />
+            <Route exact path="/worker" render={() => <Worker adapter={adapter} />} />
+          </div>
         </div>
       </Router>
     );
