@@ -119,12 +119,15 @@ export default class Adapter {
     .then(res => res.json())
   }
 
-
-
+  deleteTask(workerId, taskId){
+    return fetch((`${this.baseURL}/workers/${workerId}/tasks/${taskId}`),{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    }).then(res => res.json())
+  }
 }
 
-// get '/workers/:id/tasks' => 'workers#show_tasks'
-// get 'workers/:id/employer' => 'workers#my_boss'
-// get '/workers/:id/project' => 'workers#my_project'
-// patch '/workers/:id/task/:task_id' => 'workers#edit_task'
-// patch '/workers/:id/update' => 'workers#update_info'
+// delete '/workers/:id/tasks/:task_id' => 'workers#remove_task'

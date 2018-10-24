@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
 import WorkerTask from './WorkerTask'
+import TaskContainer from '../../containers/TaskContainer'
 const WorkerInfo = (props) => {
   
   const taskList = (info) => {
@@ -33,11 +34,7 @@ const WorkerInfo = (props) => {
       </div>
       </div>
       <div className="column">
-        {info.project
-          ? <div className="header">{<h5><b>Project: </b>{info.project.title}</h5>}</div> 
-          : <><div className="header">No Projects Found</div>
-            <p>Contact your supervisor for further instructions.</p></>}
-          <Card.Group>{taskList(info)}</Card.Group>
+        <TaskContainer info={props.info} adapter={props.adapter}/>
       </div>
       </div>
 
