@@ -14,7 +14,6 @@ const TaskContainer = (props) => {
         : <><div className="header">No Projects Found</div>
             <p>Contact your supervisor for further instructions.</p></>}
             {props.info.tasks.length > 0 ? <Card.Group>{taskCards}</Card.Group> :<React.Fragment>No Tasks Available.</React.Fragment>}
-      
     </React.Fragment>
   )
 }
